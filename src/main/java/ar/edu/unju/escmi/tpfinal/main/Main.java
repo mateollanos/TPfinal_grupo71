@@ -13,6 +13,7 @@ import ar.edu.unju.escmi.tpfinal.dao.imp.*;
 import ar.edu.unju.escmi.tpfinal.entities.*;
 import ar.edu.unju.escmi.tpfinal.exceptions.ClienteNoExisteException;
 import ar.edu.unju.escmi.tpfinal.exceptions.SalonNoDisponibleException;
+import ar.edu.unju.escmi.tpfinal.utils.*;
 
 public class Main {
 	private static ClienteDaoImp ClienteDao = new ClienteDaoImp();
@@ -661,8 +662,9 @@ public class Main {
 
 	        while (!entradaValida1) {
 	            System.out.print("\nIngrese el ID del salón (un número válido): ");
-	            
+
 	            try {
+	               
 	                if (!sc.hasNextLong()) {
 	                    System.out.println("Error: Debe ingresar un número válido para el ID.");
 	                    sc.next(); 
@@ -671,18 +673,19 @@ public class Main {
 
 	                salonId = sc.nextLong();
 	                sc.nextLine(); 
-	                
-	               
+
+	              
 	                salon = SalonDao.buscarSalonPorId(salonId);
 
-	                
 	                if (salon == null) {
 	                    System.out.println("Error: El ID ingresado no corresponde a ningún salón. Intente nuevamente.");
 	                } else if (!ReservaDao.esSalonDisponible(salon, fecha, horaInicio, horaFin)) {
-	                    System.out.println("Error: El salón no está disponible en la fecha y hora seleccionadas. Intente nuevamente.");
+	                        throw new SalonNoDisponibleException("El salón " + salonId + " no está disponible en la fecha y hora seleccionadas. Intente nuevamente.");
 	                } else {
 	                    entradaValida1 = true; 
 	                }
+	            } catch (SalonNoDisponibleException e) {
+	                System.out.println(e.getMessage()); 
 	            } catch (InputMismatchException e) {
 	                System.out.println("Error: Debe ingresar un ID válido. Intente nuevamente.");
 	                sc.next(); 
@@ -693,7 +696,6 @@ public class Main {
 	            System.out.println("Error crítico: No se encontró el salón seleccionado. Operación cancelada.");
 	            return; 
 	        }
-
 	      
 	        System.out.println("Ha seleccionado el salón: " + salon.getNombre());
 	        double costoBase = salon.getPrecio();
