@@ -55,7 +55,7 @@ public class Cliente {
 	public Cliente() {
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 	public void setId(long id) {
@@ -116,4 +116,6 @@ public class Cliente {
 		System.out.println("Estado: " + (estado ? "Activo" : "Inactivo"));
 		System.out.println("-------------------------------------------");
 	}
+
+
 }

@@ -5,10 +5,10 @@ import java.util.List;
 import ar.edu.unju.escmi.tpfinal.entities.Cliente;
 
 public interface IClienteDao {
-	void guardarCliente(Cliente cliente);
-	void modificarCliente(Cliente cliente);
-	Cliente buscarClientePorId(Long idCliente);
-	void mostrarTodosLosClientes();
-	List<Cliente> obtenerTodasLosClientes();
+	public void guardarCliente(Cliente cliente);
+	public void modificarCliente(Cliente cliente);
+	public Cliente buscarClientePorId(Long idCliente);
+	public void mostrarTodosLosClientes();
 	Cliente buscarClientePorDni(int dni);
+	List<Cliente> obtenerTodasLosClientes();
 }
