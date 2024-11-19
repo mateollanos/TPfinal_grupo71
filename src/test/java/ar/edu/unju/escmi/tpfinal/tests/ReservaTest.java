@@ -74,12 +74,13 @@ class ReservaTest {
         assertEquals(20000.0, costoExtra, "El costo de 2 horas extras debe ser $20000");
     }
 
+    @Test
     void testCalcularMontoTotal() {
         double montoTotal = reserva.calcularMontoTotal();
         assertEquals(25000.0, montoTotal, "El monto total debe ser $25000");
     }
 
-
+    @Test
     void testCalcularPagoPendiente() {
         reserva.setMontoPagado(10000.0);
         double pagoPendiente = reserva.calcularPagoPendiente();
@@ -93,6 +94,7 @@ class ReservaTest {
         assertTrue(reserva.getServiciosAdicionales().size() > 0, "Debe tener servicios adicionales");
     }
 
+    @Test
     void testEstadoReserva() {
         reserva.setMontoPagado(120000.0);
         reserva.setCancelado(reserva.calcularPagoPendiente() <= 0);
