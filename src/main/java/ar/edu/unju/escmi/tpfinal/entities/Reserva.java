@@ -8,44 +8,46 @@ import java.util.List;
 @Entity
 @Table(name = "reservas")
 public class Reserva {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "cliente_id", nullable = false)
-	private Cliente cliente;
-	
-	@ManyToOne
-	@JoinColumn(name = "salon_id", nullable = false)
-	private Salon salon;
-	
-	@Column(nullable = false)
-	private LocalDate fecha;
-	
-	@Column(nullable = false)
-	private LocalTime horaInicio;
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+private Long id;
 
-	@Column(nullable = false)
-	private LocalTime horaFin;
-	
-	private double montoPagado;
+@ManyToOne
+@JoinColumn(name = "cliente_id", nullable = false)
+private Cliente cliente;
 
-	@ManyToMany
-	@JoinTable(
-     name = "reserva_servicios",
-     joinColumns = @JoinColumn(name = "reserva_id"),
-     inverseJoinColumns = @JoinColumn(name = "servicio_id")
-	)
- 
-	private List<ServicioAdicional> serviciosAdicionales;
-	
-	private double pagoAdelantado;
-	
-	private boolean cancelado;
-	
-	private boolean estado;
+@ManyToOne
+@JoinColumn(name = "salon_id", nullable = false)
+private Salon salon;
 
+@Column(nullable = false)
+private LocalDate fecha;
+
+@Column(nullable = false)
+private LocalTime horaInicio;
+
+@Column(nullable = false)
+private LocalTime horaFin;
+
+@Column(nullable = true) // Si el monto puede ser nulo, se establece 'nullable = true'.
+private double montoPagado;
+
+@ManyToMany
+@JoinTable(
+    name = "reserva_servicios",
+    joinColumns = @JoinColumn(name = "reserva_id"),
+    inverseJoinColumns = @JoinColumn(name = "servicio_id")
+)
+private List<ServicioAdicional> serviciosAdicionales;
+
+@Column(nullable = true) // Si el pago adelantado puede ser nulo, se establece 'nullable = true'.
+private double pagoAdelantado;
+
+@Column(nullable = false) // Se mantiene como 'false' para evitar nulos, ya que un 'boolean' no puede ser null.
+private boolean cancelado;
+
+@Column(nullable = false) // Se mantiene como 'false' para evitar nulos, ya que un 'boolean' no puede ser null.
+private boolean estado;
 	public Reserva() {
 		this.estado = true;
 	    this.cancelado = false;
