@@ -546,7 +546,6 @@ public class Main {
 	        }
 
 	        LocalDate fecha = null;
-	        DateTimeFormatter fechaFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	        LocalDate fechaMinima = LocalDate.of(2024, 11, 19);
 	        boolean fechaValida = false;
 
@@ -555,36 +554,26 @@ public class Main {
 	            String fechaStr = sc.nextLine();
 
 	            try {
-	                fecha = LocalDate.parse(fechaStr, fechaFormatter);
-
-	                if (fecha.isBefore(fechaMinima)) {
-	                    System.out.println("No se aceptan reservas para fechas anteriores al 19 de noviembre de 2024.");
+	            	
+	            	 FechaUtil.validarComponentesFecha(fechaStr);
+	               
+	                fecha = FechaUtil.convertirStringAFecha(fechaStr);
+	               
+	                if (!FechaUtil.esFechaValida(fecha, fechaMinima)) {
+	                    System.out.println("No se aceptan reservas para fechas anteriores al " + FechaUtil.formatearFecha(fechaMinima) + ".");
 	                    continue;
 	                }
 
-	                String[] partes = fechaStr.split("/");
-	                if (partes.length != 3) {
-	                    throw new IllegalArgumentException("Formato de fecha incorrecto. Use dd/MM/yyyy.");
-	                }
-
-	                int dia = Integer.parseInt(partes[0]);
-	                int mes = Integer.parseInt(partes[1]);
-	                int anio = Integer.parseInt(partes[2]);
-
-	                if (dia < 1 || dia > 31) {
-	                    throw new IllegalArgumentException("El día debe estar entre 1 y 31.");
-	                }
-	                if (mes < 1 || mes > 12) {
-	                    throw new IllegalArgumentException("El mes debe estar entre 1 y 12.");
-	                }
-
 	                fechaValida = true;
-	                System.out.println("Fecha ingresada correctamente: " + fecha.format(fechaFormatter));
+	                System.out.println("Fecha ingresada correctamente: " + FechaUtil.formatearFecha(fecha));
 
-	            } catch (DateTimeParseException | IllegalArgumentException e) {
-	                System.out.println("Ocurrió un error. Ingréselo correctamente.");
+	            } catch (DateTimeParseException e) {
+	                System.out.println("Formato de fecha incorrecto. Use dd/MM/yyyy.");
+	            } catch (IllegalArgumentException e) {
+	                System.out.println(e.getMessage());
 	            }
 	        }
+
 
 	        String horaInicioStr;
 	        LocalTime horaInicio = null;
@@ -649,7 +638,7 @@ public class Main {
 	            }
 	        }
 
-	        System.out.println("\nSalones disponibles para la fecha " + fecha.format(fechaFormatter) + " de " + horaInicio + " a " + horaFin + ":");
+	        System.out.println("\nSalones disponibles para la fecha " + FechaUtil.formatearFecha(fecha) + " de " + horaInicio + " a " + horaFin + ":");
 	        List<Salon> todosLosSalones = SalonDao.obtenerTodosLosSalones();
 	        List<Salon> salonesDisponibles = new ArrayList<>();
 	        for (Salon salon : todosLosSalones) {
@@ -708,7 +697,7 @@ public class Main {
 	      
 	        System.out.println("Ha seleccionado el salón: " + salon.getNombre());
 	        double costoBase = salon.getPrecio();
-	        costoTotal += costoBase; // Añadir el costo base al total
+	        costoTotal += costoBase; 
 	        
 	        
 	        boolean respuestaValida2 =false;
@@ -777,7 +766,7 @@ public class Main {
 
 		    System.out.println("\n========== DETALLES DE LA RESERVA ==========");
 		    System.out.println("Cliente: " + cliente.getNombre() + " " + cliente.getApellido());
-		    System.out.println("Fecha de la reserva: " + fecha.format(fechaFormatter));
+		    System.out.println("Fecha de la reserva: " + FechaUtil.formatearFecha(fecha));
 		    System.out.println("Horario: " + horaInicio + " - " + horaFin);
 		    System.out.println("Horas extras: " + horasAdicionales);
 		    System.out.println("Salón elegido: " + salon.getNombre());
