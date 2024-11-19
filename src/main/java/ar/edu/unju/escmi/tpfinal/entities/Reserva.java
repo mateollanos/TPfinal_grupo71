@@ -29,7 +29,7 @@ private LocalTime horaInicio;
 @Column(nullable = false)
 private LocalTime horaFin;
 
-@Column(nullable = true) // Si el monto puede ser nulo, se establece 'nullable = true'.
+@Column(nullable = true)
 private double montoPagado;
 
 @ManyToMany
@@ -40,13 +40,13 @@ private double montoPagado;
 )
 private List<ServicioAdicional> serviciosAdicionales;
 
-@Column(nullable = true) // Si el pago adelantado puede ser nulo, se establece 'nullable = true'.
+@Column(nullable = true)
 private double pagoAdelantado;
 
-@Column(nullable = false) // Se mantiene como 'false' para evitar nulos, ya que un 'boolean' no puede ser null.
+@Column(nullable = false)
 private boolean cancelado;
 
-@Column(nullable = false) // Se mantiene como 'false' para evitar nulos, ya que un 'boolean' no puede ser null.
+@Column(nullable = false)
 private boolean estado;
 	public Reserva() {
 		this.estado = true;
