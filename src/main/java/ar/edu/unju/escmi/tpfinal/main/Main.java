@@ -664,10 +664,10 @@ public class Main {
 	            System.out.print("\nIngrese el ID del salón (un número válido): ");
 
 	            try {
-	                // Verifica si la entrada es un número válido
+	               
 	                if (!sc.hasNextLong()) {
 	                    System.out.println("Error: Debe ingresar un número válido para el ID.");
-	                    sc.next(); // Descartar entrada no válida
+	                    sc.next(); 
 	                    continue;
 	                }
 
