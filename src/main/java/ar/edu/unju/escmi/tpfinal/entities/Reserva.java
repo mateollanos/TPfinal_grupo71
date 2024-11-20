@@ -194,12 +194,12 @@ private boolean cancelado;
 	     System.out.println("Fecha: " + fecha);
 	     System.out.println("Hora inicio: " + horaInicio);
 	     System.out.println("Hora fin: " + horaFin);
-	     System.out.println("Monto pagado: $" + montoPagado);
+	     System.out.println("Monto pagado: $" + (montoPagado + getPagoAdelantado()));
 	     System.out.println("Estado pago: " + (cancelado ? "CANCELADO" : "PAGO PENDIENTE"));
 	     System.out.println("Servicios adicionales:");
 	     if (serviciosAdicionales != null) {
 	         serviciosAdicionales.forEach(s -> System.out.println("- " + s.getDescripcion()));
-	     }
+	     } 
 		 System.out.println("-------------------------------------------");
 	}
 

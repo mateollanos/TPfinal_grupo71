@@ -1,7 +1,6 @@
 package ar.edu.unju.escmi.tpfinal.dao.imp;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import java.util.List;
@@ -16,7 +15,6 @@ public class SalonDaoImp implements ISalonDao{
 	@Override
 	public void mostrarTodosLosSalones() {
 		TypedQuery<Salon>query = manager.createQuery("SELECT e FROM Salon e",Salon.class);
-		@SuppressWarnings("unchecked")
 		List<Salon> salones = query.getResultList();
 		for(Salon salones1 : salones) {
 			salones1.mostrarDatos();
@@ -45,7 +43,7 @@ public class SalonDaoImp implements ISalonDao{
 
 	        manager.getTransaction().commit();
 	    } catch (Exception e) {
-	        if (manager.getTransaction().isActive()) {
+	    	if (manager.getTransaction().isActive()) {
 	            manager.getTransaction().rollback();
 	        }
 	        System.out.println("Ocurrió un error al guardar los salones: " + e.getMessage());

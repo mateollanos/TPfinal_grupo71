@@ -1,15 +1,10 @@
 package ar.edu.unju.escmi.tpfinal.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,9 +24,6 @@ public class Salon {
 	
 	@Column(name = "salon_precio")
 	private double precio;
-
-	@OneToMany(mappedBy = "salon", cascade = CascadeType.ALL )
-	private List<Reserva> reservas;
 	
 	@Column(name = "salon_pileta")
 	private boolean conPileta = true;
@@ -43,7 +35,6 @@ public class Salon {
         this.capacidad = capacidad;
         this.precio = precio;
         this.conPileta = conPileta;
-        this.reservas = new ArrayList<>();
     }
 
 	
@@ -80,12 +71,6 @@ public class Salon {
 	}
 	public void conPileta(boolean conPileta) {
 		this.conPileta = conPileta;
-	}
-	public List<Reserva> getReserva() {
-		return reservas;
-	}
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas; 
 	}
 
 	public void mostrarDatos() {

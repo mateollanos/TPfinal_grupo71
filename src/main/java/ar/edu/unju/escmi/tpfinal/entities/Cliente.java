@@ -1,14 +1,10 @@
 package ar.edu.unju.escmi.tpfinal.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,9 +21,6 @@ public class Cliente {
 	
 	@Column(name = "cliente_apellido")
 	private String apellido;
-
-	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
-	private List<Reserva> reservas;
 	
 	@Column(name = "cliente_domicilio")
 	private String domicilio;
@@ -42,14 +35,13 @@ public class Cliente {
 	private boolean estado=true;
 	
 	
-	public Cliente(String nombre, String apellido, String domicilio, int telefono, int dni, List<Reserva> reservas) {
+	public Cliente(String nombre, String apellido, String domicilio, int telefono, int dni) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.domicilio = domicilio;
 		this.dni = dni;
 		this.telefono = telefono; 
-		this.reservas = reservas;
 	}
 	
 	public Cliente() {
@@ -96,14 +88,6 @@ public class Cliente {
 	}
 	public void setEstado(boolean estado) {
 		this.estado = estado;
-	}
-	
-	public List<Reserva> getReserva() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas; 
 	}
 
 	public void mostrarClientes() {

@@ -19,7 +19,9 @@ public class ReservaDaoImp implements IReservaDao {
            manager.persist(reserva);
            manager.getTransaction().commit();
        } catch (Exception e) {
-           manager.getTransaction().rollback();
+    	   if (manager.getTransaction().isActive()) {
+	            manager.getTransaction().rollback();
+	        }
            throw e;
        }
    }
@@ -31,7 +33,9 @@ public class ReservaDaoImp implements IReservaDao {
            manager.merge(reserva);
            manager.getTransaction().commit();
        } catch (Exception e) {
-           manager.getTransaction().rollback();
+    	   if (manager.getTransaction().isActive()) {
+	            manager.getTransaction().rollback();
+	        }
            throw e;
        }
    }

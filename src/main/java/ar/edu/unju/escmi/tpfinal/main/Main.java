@@ -2,7 +2,6 @@ package ar.edu.unju.escmi.tpfinal.main;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -198,8 +197,7 @@ public class Main {
             }
         } while (datoInvalido);
 	    
-	    List<Reserva> reservas = null;
-	    Cliente cliente = new Cliente(nombre, apellido, domicilio, telefono, dni, reservas);
+	    Cliente cliente = new Cliente(nombre, apellido, domicilio, telefono, dni);
 	    ClienteDao.guardarCliente(cliente);
 	    System.out.println("Cliente registrado exitosamente!");
 	}
@@ -329,16 +327,7 @@ public class Main {
 
 	        ClienteDao.modificarCliente(cliente);
 	        System.out.println("\nDatos del cliente actualizados.\n");
-	        
-	        List<Reserva> reservas = cliente.getReserva();
-	        if (reservas != null) { 
-	            for (Reserva reser : reservas) {
-	                reser.setCliente(cliente);
-	                ReservaDao.modificarReserva(reser);
-	            }
-	        } else {
-	            System.out.println("El cliente no tiene reservas asociadas.");
-	        }
+	       
 	    }
 
 	    public static void consultaClientes(Scanner sc) {

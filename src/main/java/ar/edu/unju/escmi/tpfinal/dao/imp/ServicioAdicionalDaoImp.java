@@ -30,7 +30,9 @@ public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
 			
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
+			if (manager.getTransaction().isActive()) {
+	            manager.getTransaction().rollback();
+	        }
 			throw e;
 		}
 	}
@@ -42,7 +44,9 @@ public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
 			manager.merge(servicio);
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
+			if (manager.getTransaction().isActive()) {
+	            manager.getTransaction().rollback();
+	        }
 			throw e;
 		}
 	}
@@ -74,7 +78,9 @@ public class ServicioAdicionalDaoImp implements IServicioAdicionalDao{
 			}
 			manager.getTransaction().commit();
 		} catch (Exception e) {
-			manager.getTransaction().rollback();
+			if (manager.getTransaction().isActive()) {
+	            manager.getTransaction().rollback();
+	        }
 			throw e;
 		}
 	}

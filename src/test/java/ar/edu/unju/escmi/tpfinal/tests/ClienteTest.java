@@ -6,15 +6,8 @@ import org.junit.jupiter.api.*;
 import javax.persistence.*;
 
 import ar.edu.unju.escmi.tpfinal.dao.imp.ClienteDaoImp;
-import ar.edu.unju.escmi.tpfinal.dao.imp.SalonDaoImp;
 import ar.edu.unju.escmi.tpfinal.entities.Cliente;
-import ar.edu.unju.escmi.tpfinal.entities.Reserva;
-import ar.edu.unju.escmi.tpfinal.entities.Salon;
-import ar.edu.unju.escmi.tpfinal.entities.ServicioAdicional;
 import ar.edu.unju.escmi.tpfinal.exceptions.ClienteNoExisteException;
-
-import java.util.Arrays;
-import java.util.List;
 
 class ClienteTest {
 	private static  EntityManagerFactory emf;
@@ -33,7 +26,7 @@ class ClienteTest {
     }
     @BeforeEach
     void setUp() {
-        cliente = new Cliente("Maria", "Lopez", "Calle Falsa 123", 388412456, 87654321, null);
+        cliente = new Cliente("Maria", "Lopez", "Calle Falsa 123", 388412456, 87654321);
     }
     
 

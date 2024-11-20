@@ -38,8 +38,7 @@ class ReservaTest {
 
     @BeforeEach
     void setUp() {
-        List<Reserva> reservas = new ArrayList<>();
-        cliente = new Cliente("Juan", "Perez", "Av. Test 123", 388412345, 12345678, reservas);
+        cliente = new Cliente("Juan", "Perez", "Av. Test 123", 388412345, 12345678);
         
         salon = new Salon(1L, "Cosmos", 60, 5000.0, false);
         servicios = new ArrayList<>();

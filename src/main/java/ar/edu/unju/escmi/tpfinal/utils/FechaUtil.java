@@ -36,5 +36,8 @@ public class FechaUtil {
         if (mes < 1 || mes > 12) {
             throw new IllegalArgumentException("El mes debe estar entre 1 y 12.");
         }
+        if (anio > 2024) {
+            throw new IllegalArgumentException("El año debe ser mayor a 2024");
+        }
     }
 }

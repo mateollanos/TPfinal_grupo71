@@ -1,7 +1,6 @@
 package ar.edu.unju.escmi.tpfinal.entities;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "servicios_adicionales")
@@ -19,11 +18,8 @@ public class ServicioAdicional {
 	@Column(nullable = false)
 	private boolean estado;
 	
-	@ManyToMany(mappedBy = "serviciosAdicionales")
-	private List<Reserva> reservas;
-	
 	public ServicioAdicional() {
-        this.estado = true; // Valor predeterminado
+        this.estado = true; 
     }
 	
 	public ServicioAdicional(Long id, String descripcion, double precio, boolean estado) {
@@ -63,14 +59,6 @@ public class ServicioAdicional {
 
 	public void setEstado(boolean estado) {
 		this.estado = estado;
-	}
-
-	public List<Reserva> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reserva> reservas) {
-		this.reservas = reservas;
 	}
 
 	public void mostrarDatos() {
