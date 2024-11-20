@@ -29,7 +29,7 @@ public class Reserva {
 	@Column(nullable = false)
 	private LocalTime horaFin;
 
-	@Column(nullable = true) // Si el monto puede ser nulo, se establece 'nullable = true'.
+	@Column(nullable = true) 
 	private double montoPagado;
 
 	@ManyToMany
@@ -40,7 +40,7 @@ public class Reserva {
 	)
 	private List<ServicioAdicional> serviciosAdicionales;
 
-	@Column(nullable = true) // Si el pago adelantado puede ser nulo, se establece 'nullable = true'.
+	@Column(nullable = true)
 	private double pagoAdelantado;
 
 	@Column(nullable = false) // Se mantiene como 'false' para evitar nulos, ya que un 'boolean' no puede ser null.
@@ -211,7 +211,6 @@ public class Reserva {
 	    if (montoPagado >= montoTotal) {
 	        return 0;
 	    }
-
 	    return montoTotal - montoPagado;
 	}
 }
