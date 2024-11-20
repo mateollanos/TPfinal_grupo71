@@ -46,8 +46,9 @@ private double pagoAdelantado;
 @Column(nullable = false)
 private boolean cancelado;
 
-@Column(nullable = false)
-private boolean estado;
+@Column(nullable = false) 	
+	private boolean estado;
+
 	public Reserva() {
 		this.estado = true;
 	    this.cancelado = false;
